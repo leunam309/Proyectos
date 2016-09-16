@@ -1,0 +1,654 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package vistas;
+
+
+import crudSpa.cruds.CrudPromocion;
+import crudSpa.models.Promocion;
+import javax.swing.ImageIcon;
+import tableModels.PromocionTableModel;
+import java.math.BigDecimal;
+import java.sql.ResultSetMetaData;
+import java.sql.Date;
+import javax.sql.rowset.CachedRowSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import utiles.CambiarFecha;
+
+/**
+ *En esta clase promocionVista tenemos un formulario en el que recogemos los dados de
+ * las promociones, una tabla donde nos muestra las promociones que existentes, tambien
+ * cuenta con un campo de busqueda con su correspondiente boton y 
+ * los botones añadir, modificar, eliminar y volver al menu
+ *
+ * @author mrevuelta
+ * @version 1.0
+ * @since 1.0
+ */
+public class PromocionVista extends javax.swing.JFrame {
+
+     
+    String valueToFilter;
+    TableRowSorter sorter;
+    PromocionTableModel ptm;
+    Promocion pr;
+    
+    /**
+     * Creates new form Promocio
+     */
+    public PromocionVista() {
+        initComponents();
+     setIconImage(new ImageIcon(getClass().getResource("../icon/icono1.jpg")).getImage());
+        this.setLocationRelativeTo(null);
+       
+        
+        //Si solo queremos que las filas se puedan ordenar por los valores
+        //de las columnas, de forma automática (números, cadenas, ...)
+        //jTable1.setAutoCreateRowSorter(true);
+        
+        
+        //Si queremos ordenación y filtrado por algún valor, necesitamos
+        //todo el código siguiente:
+        
+        //Instanciamos nuestro table model
+        ptm = new PromocionTableModel();
+        
+        //Instanciamos nuestro TableRowSorter. Debe estar
+        //parametrizado sobre EmployeeTableModel, y usaremos
+        //la variable anterior en el constructor para poder instanciarlo.
+        sorter = new TableRowSorter<PromocionTableModel>(ptm);
+        
+        //Asignamos el table model a la tabla ya creada
+        tabla_promocion.setModel((TableModel) ptm);
+        
+        //Le asignamos ahora el RowSorter
+        tabla_promocion.setRowSorter(sorter);
+        
+        //Inicializamos el valor de filtrado
+        valueToFilter = "";
+        
+        
+        /*
+            Mediante este código, vamos a ocultar la columna con ID 
+            (puesto que es un valor que solo sirve a nivel interno de la
+            base de datos), pero que se debe utilizar en los eventos
+            para recuperar datos usando este valor para buscar por PK.
+        */
+        tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+        
+    }
+    /**
+     * metodo que recoge los campos del formulario
+     * @return promocion
+     */
+     public Promocion recogerPromocion(){
+        
+        Promocion pr = new Promocion(); 
+         
+        pr.setNombre(nombrepr.getText());
+        pr.setDescuento(Double.valueOf(descuentopr.getText()));
+        return pr;
+    }
+    /**
+     * metodo para limpiar los campos del formulario
+     */
+    public void limpiarCampos(){
+        this.nombrepr.setText("");
+        this.descuentopr.setText("");
+    } 
+     
+    /**
+     *metodo para actualiza la tabla de clientes
+     */
+    public void refresh() {
+        sorter = new TableRowSorter<PromocionTableModel>(ptm);
+        
+        //Instanciamos nuestro table model
+        ptm = new PromocionTableModel();
+                
+        //Asignamos el table model a la tabla ya creada
+        tabla_promocion.setModel((TableModel) ptm);
+        
+        //Le asignamos ahora el RowSorter
+        tabla_promocion.setRowSorter(sorter);
+        
+        //Inicializamos el valor de filtrado
+        valueToFilter = "";
+    }
+    
+    
+    /*
+     * En este método vamos a crear un nuevo filtro, basado
+     * en el valor recogido mediante un JOptionPane. Dicho valor
+     * será usado para filtrar los resultados de la tabla
+     */
+    private void newFilter() {
+        //Creamos la referencia del RowFilter a construir
+        RowFilter<PromocionTableModel, Object> rf = null;
+        //Si la siguiente excepción no puede ser parseada,
+        //no hacemos nada
+        try {
+            //Obtenemos el RowFilter a través de la factoría
+            //En este caso, creamos un filtro que usa expresiones regulares
+            rf = RowFilter.regexFilter(valueToFilter);
+        } catch (java.util.regex.PatternSyntaxException ex) {
+            return;
+        }
+        //Asignamos el filtro al sorter.
+        sorter.setRowFilter(rf);
+    }
+
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla_promocion = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        descuentopr = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        nombrepr = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        modificar_promocion = new javax.swing.JButton();
+        nueva_promo = new javax.swing.JButton();
+        eliminar_promocion = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JButton();
+        buscar_promo = new javax.swing.JTextField();
+        volver_menu = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista Promoción", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel6.setOpaque(false);
+
+        tabla_promocion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tabla_promocion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_promocionMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabla_promocion);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Promoción", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel2.setOpaque(false);
+
+        descuentopr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descuentoprKeyTyped(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("*Descuento Promoción");
+
+        nombrepr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreprKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("*Nombre");
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Rellene los campos marcados con asteriscos");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
+                .addGap(81, 81, 81)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(descuentopr, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11))
+                    .addComponent(nombrepr, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombrepr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(descuentopr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setOpaque(false);
+
+        modificar_promocion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1429102247_Pencil3.png"))); // NOI18N
+        modificar_promocion.setBorderPainted(false);
+        modificar_promocion.setContentAreaFilled(false);
+        modificar_promocion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificar_promocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_promocionActionPerformed(evt);
+            }
+        });
+
+        nueva_promo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1429102285_Plus__Orange.png"))); // NOI18N
+        nueva_promo.setBorderPainted(false);
+        nueva_promo.setContentAreaFilled(false);
+        nueva_promo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nueva_promo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nueva_promoActionPerformed(evt);
+            }
+        });
+
+        eliminar_promocion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1429102216_DeleteRed.png"))); // NOI18N
+        eliminar_promocion.setBorderPainted(false);
+        eliminar_promocion.setContentAreaFilled(false);
+        eliminar_promocion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eliminar_promocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_promocionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(nueva_promo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(modificar_promocion)
+                .addGap(41, 41, 41)
+                .addComponent(eliminar_promocion))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modificar_promocion)
+                    .addComponent(nueva_promo)
+                    .addComponent(eliminar_promocion))
+                .addGap(1, 1, 1))
+        );
+
+        jPanel5.setOpaque(false);
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Buscar:");
+
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1429102262_Magnifier2.png"))); // NOI18N
+        Buscar.setBorderPainted(false);
+        Buscar.setContentAreaFilled(false);
+        Buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+
+        buscar_promo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_promoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(buscar_promo, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(Buscar)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(Buscar)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buscar_promo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        volver_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1429031124_Log Out.png"))); // NOI18N
+        volver_menu.setBorderPainted(false);
+        volver_menu.setContentAreaFilled(false);
+        volver_menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volver_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volver_menuActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 66, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(volver_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(volver_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void buscar_promoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_promoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscar_promoActionPerformed
+
+    //Este es boton no hace volver al menu
+    private void volver_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver_menuActionPerformed
+
+        MenuVista m = new MenuVista();
+        m.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_volver_menuActionPerformed
+    /**
+     * metodo para cargar los campos del formulario seleccionando una fila de la tabla
+     */
+    private void tabla_promocionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_promocionMouseClicked
+        // TODO add your handling code here:
+        int fila = tabla_promocion.convertRowIndexToModel(tabla_promocion.getSelectedRow());
+        BigDecimal idPromocion = (BigDecimal) tabla_promocion.getModel().getValueAt(fila, 0);
+       
+       pr = CrudPromocion.findByPk(idPromocion.intValue());
+        
+        nombrepr.setText(pr.getNombre());
+         descuentopr.setText(String.valueOf(pr.getDescuento()));
+        
+        
+    }//GEN-LAST:event_tabla_promocionMouseClicked
+
+    
+    //Este boton crea una nueva promocion con los datos recogidos de los campos
+    //del formulario, de los cuales necesitaremos todos los datos
+    //una vez creado se actualizara la tabla de promociones y se limpiaran los campos
+    private void nueva_promoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nueva_promoActionPerformed
+        // TODO add your handling code here:
+        
+        if(nombrepr.getText().equals("") || descuentopr.getText().equals("")){
+					JOptionPane.showMessageDialog(rootPane, "Debe rellenar los campos marcados con asteriscos", "Campos insuficientes", JOptionPane.WARNING_MESSAGE);
+				}else{
+        
+        CrudPromocion.create(recogerPromocion());
+        refresh();
+        tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+
+        JOptionPane.showMessageDialog(rootPane, "Promocion creada");
+        this.tabla_promocion.setModel(new PromocionTableModel());
+        refresh();
+        tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+        limpiarCampos();
+        }
+    }//GEN-LAST:event_nueva_promoActionPerformed
+
+    //con este boton conseguimos modificar la promocion que seleccionamos de la tabla
+    //promociones, se actualiza la tabla y limpie los campos
+    private void modificar_promocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_promocionActionPerformed
+        // TODO add your handling code here:
+        
+        if(nombrepr.getText().equals("") || descuentopr.getText().equals("")){
+					JOptionPane.showMessageDialog(rootPane, "Debe rellenar los campos marcados con asteriscos", "Campos insuficientes", JOptionPane.WARNING_MESSAGE);
+				}else{
+        
+        
+        pr.setNombre(nombrepr.getText());
+        pr.setDescuento(Double.valueOf(descuentopr.getText()));
+        
+        CrudPromocion.update(pr);
+        refresh();
+        tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+        limpiarCampos();
+        }
+    }//GEN-LAST:event_modificar_promocionActionPerformed
+
+    //con este boton conseguimos eliminar el promocion que seleccionamos de la tabla
+    //promociones, se actualiza la tabla y limpie los campos
+    private void eliminar_promocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_promocionActionPerformed
+        // TODO add your handling code here:
+        
+        if(nombrepr.getText().equals("") || descuentopr.getText().equals("")){
+					JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una promocion de la 'Lista'", "Campos insuficientes", JOptionPane.WARNING_MESSAGE);
+				}else{
+        
+        
+        int fila = tabla_promocion.convertColumnIndexToModel(tabla_promocion.getSelectedRow());
+        int respuesta;
+        BigDecimal idPromo = (BigDecimal) tabla_promocion.getModel().getValueAt(fila, 0);        
+        
+           respuesta = JOptionPane.showConfirmDialog(rootPane,"¿Desea eliminar la promoción seleccionada?"+JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                CrudPromocion.delete(idPromo.intValue());
+                
+                refresh();
+            tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+            limpiarCampos();
+            
+            }
+        }
+    }//GEN-LAST:event_eliminar_promocionActionPerformed
+    // boton para buscar texto que le indicamos en el campo buscar_promo
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        
+       // String busca = buscar_promo.getText();
+        valueToFilter = buscar_promo.getText();        
+        newFilter();
+       // this.tabla_promocion.setModel(new PromocionTableModel(Consulta.BuscarPromociones(busca)));
+       // refresh();
+       // tabla_promocion.removeColumn(tabla_promocion.getColumnModel().getColumn(0));
+       // this.buscar_promo.setText("");
+        
+    }//GEN-LAST:event_BuscarActionPerformed
+    /*
+    * eliminamos la opción de meter números en el textfield
+    */
+    private void nombreprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreprKeyTyped
+        char c = evt.getKeyChar();
+	if(Character.isDigit(c)){
+	evt.consume();
+	JOptionPane.showMessageDialog(rootPane, "Introduzca sólo letras","Error de introducción",JOptionPane.ERROR_MESSAGE);
+	}
+    }//GEN-LAST:event_nombreprKeyTyped
+    /*
+    * eliminamos la opción de meter letras en el textfield
+    */
+    private void descuentoprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descuentoprKeyTyped
+                        char c = evt.getKeyChar();
+			
+                        if(Character.isLetter(c)){
+			
+                            evt.consume();
+			JOptionPane.showMessageDialog(rootPane, "Introduzca sólo números","Error de introducción",JOptionPane.ERROR_MESSAGE);
+				}
+    }//GEN-LAST:event_descuentoprKeyTyped
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PromocionVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PromocionVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PromocionVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PromocionVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PromocionVista().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
+    private javax.swing.JTextField buscar_promo;
+    private javax.swing.JTextField descuentopr;
+    private javax.swing.JButton eliminar_promocion;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton modificar_promocion;
+    private javax.swing.JTextField nombrepr;
+    private javax.swing.JButton nueva_promo;
+    private javax.swing.JTable tabla_promocion;
+    private javax.swing.JButton volver_menu;
+    // End of variables declaration//GEN-END:variables
+}
