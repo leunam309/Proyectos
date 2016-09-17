@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="leunam.sparelajarte.fragments.InicioFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity$PlaceholderFragment"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/relax">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:text="manuel"
+            android:hint="Usuario"
+            android:textAlignment="center"
+            android:background="@drawable/botonesytexto"
+            android:ems="10"
+            android:id="@+id/editTextUser"
+            android:layout_above="@+id/editTextPass"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="33dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextPass"
+            android:text="123456"
+            android:textAlignment="center"
+            android:hint="Contraseña"
+            android:background="@drawable/botonesytexto"
+            android:layout_above="@+id/buttonEntrar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="55dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_entra"
+            android:id="@+id/buttonEntrar"
+            android:background="@drawable/botones"
+            android:layout_marginBottom="77dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_marginBottom="29dp"
+            android:src="@drawable/logo"
+            android:layout_above="@+id/editTextUser"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</FrameLayout>

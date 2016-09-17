@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_centro_scroll" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="leunam.sparelajarte.activitys.CentroScrollActivity"
+    android:background="@drawable/relax">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+
+
+            <TextView
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="centro"
+            android:gravity="center"
+            android:id="@+id/textViewNombreCentro"
+            android:layout_gravity="center_horizontal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="descripcion del centrot"
+            android:id="@+id/textViewDescripcionCentro"
+            android:layout_weight="0.24"
+            android:textColor="#000000" />
+        <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+
+            <!--xmlns:map="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp" android:id="@+id/map"-->
+            <!--tools:context="leunam.sparelajarte.activitys.MapsActivity"-->
+            <!--android:name="com.google.android.gms.maps.SupportMapFragment" />-->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botones"
+            android:drawableLeft="@drawable/mapa"
+            android:textColor="#000000"
+            android:id="@+id/ButtonMapa"
+            android:paddingTop="6sp"
+            android:text="@string/btn_mapa"
+            android:paddingLeft="5dp"
+            android:paddingRight="3dp"
+            android:layout_gravity="center_horizontal"></Button>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="@string/btn_servicios"
+                android:layout_marginRight="-3dp"
+                android:id="@+id/buttonReservar"
+                android:background="@drawable/botones"
+                android:textColor="#000" />
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginRight="7dp"
+                android:text="@string/btn_promociones"
+                android:id="@+id/buttonpromo"
+                android:background="@drawable/botones"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/txt_mensaje"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recicladorComen"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_margin="6dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_comentario"
+                android:id="@+id/buttonComentario"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/botones"
+                android:textColor="#000000" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+</android.support.v4.widget.NestedScrollView>

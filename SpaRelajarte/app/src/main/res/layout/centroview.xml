@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/relative">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:weightSum="1"
+            android:background="@drawable/botones"
+            android:layout_marginTop="1dp">
+
+            <ImageView
+                android:layout_width="97dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/imgCentro"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="92dp"
+                android:layout_weight="0.31"
+                android:layout_marginLeft="20dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/centro" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Centro"
+                    android:id="@+id/CentroName"
+                    android:layout_alignBottom="@+id/imgCentro"
+                    android:layout_toEndOf="@+id/imgCentro"
+                    android:textSize="24dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="15dp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="btn_entra">Login</string>
+    <string name="btn_servicios">services</string>
+    <string name="btn_promociones">promotions</string>
+    <string name="txt_mensaje">messages</string>
+    <string name="btn_comentario">add message</string>
+    <string name="btn_mapa">see location</string>
+    <string name="txt_centros">List of centers</string>
+    <string name="txt_comentario">Mensaje</string>
+    <string name="btn_enviar">send</string>
+    <string name="txt_reserva">List of reservations</string>
+    <string name="btn_registro">sign in</string>
+    <string name="btn_modificar">modify</string>
+    <string name="btn_guardarperfil">save</string>
+    <string name="txt_m_servicios">services</string>
+    <string name="txt_centro_reserva">Center reserved</string>
+    <string name="txt_servicio_reser">service reserved</string>
+    <string name="txt_fechayhoramodi">Date and Time Reserve</string>
+    <string name="btn_delete_m_reser">delete</string>
+    <string name="btn_m_reserva">save</string>
+    <string name="btn_reser">reserve</string>
+    <string name="txt_promociones">promotions</string>
+    <string name="centros">Centers</string>
+    <string name="reservas">reservations</string>
+    <string name="perfil">profile</string>
+    <string name="salir">exit</string>
+    <string name="inicio">Log in</string>
+    <string name="regis">Sign in</string>
+</resources>

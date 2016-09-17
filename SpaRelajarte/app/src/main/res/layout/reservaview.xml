@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/relativelinea">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:weightSum="1"
+        android:id="@+id/linearLayoutReserva">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:weightSum="1"
+            android:background="@drawable/botones">
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:weightSum="1">
+
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:id="@+id/imageView2"
+                    android:layout_weight="2.60"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="fecha"
+                    android:id="@+id/textfecha"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="hora"
+                    android:id="@+id/texthora"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:id="@+id/imageView3"
+                    android:layout_weight="2.60"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/centro" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Centro"
+                    android:id="@+id/textcentro"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-3dp">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:id="@+id/imageView4"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/massage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Serviciot"
+                    android:id="@+id/textservicio"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp"
+                    android:layout_marginTop="-2dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
