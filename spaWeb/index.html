@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spa'Relajarte</title>
+  
+  <link rel="stylesheet" href="https://www.numier.com/clientes/styles/jquery.pnotify.default.css">
+  <link rel="stylesheet" href="https://www.numier.com/clientes/styles/styles.css">
+  <link rel="stylesheet" href="https://www.numier.com/clientes/styles/calendar.css">
+  <link rel="stylesheet" href="https://www.numier.com/clientes/styles/bootstrap.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+<style type="text/css">
+
+
+.progress-bar {
+    color: #333;
+} 
+
+
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    outline: none;
+}
+
+    .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+        @include box-sizing(border-box);
+
+        &:focus {
+          z-index: 2;
+        }
+    }
+      .navbar-default .navbar-fixed-top {
+    background-color: #000000;
+}
+
+body {
+    color: black;
+    background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-form {
+    margin-top: 60px;
+}
+
+form[role=login] {
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+    form[role=login] img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 35px;
+    }
+    form[role=login] input,
+    form[role=login] button {
+        font-size: 18px;
+        margin: 16px 0;
+    }
+    form[role=login] > div {
+        text-align: center;
+    }
+    
+.form-links {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+}
+    .form-links a {
+        color: #fff;
+    }
+</style>
+<body>
+
+<div class="container cnt">
+  
+  <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    
+    <div class="col-md-4">
+      <section class="login-form">
+        <form method="post" action="#" role="login">
+          <img src="logo.png" class="img-responsive" alt="" />
+          <input type="text" name="usuario" placeholder="admin" required class="form-control input-lg useradmin" value="" required="" />
+          
+
+          <input type="password" class="form-control input-lg password" placeholder="Password" required="" />
+          
+          
+          <div class="pwstrength_viewport_progress"></div>
+          
+          
+          <button type="button" name="login" class="btn btn-lg btn-primary btn-block login">Sign in</button>
+
+          
+        </form>
+        
+      </section>  
+      </div>
+      
+  </div>
+ 
+</div>
+
+<!-- Principal -->
+
+
+  <div class="navbar-default navbar-fixed-top cabe" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">
+              <span class="glyphicon glyphicon-arrow-left" id="arrowBack" style="font-size: 1.2em;"></span>
+              
+            </a>
+
+
+          </div>
+          <div class="navbar-inner" style="margin: 10px auto -40px auto;width: 50%;">
+              <div class="nav-center">
+              </div>
+          </div>  
+            <ul class="nav navbar-nav navbar-right" id="menuNav">
+              
+                
+            <span>Salir <span class="glyphicon glyphicon-remove-circle salir" style="font-size:1.2em; margin-right:2em; margin-top:1em;"></span> </span>
+              
+            </ul>
+      </div>
+  <br>
+  <br>
+  <div class="wrapper">
+  <div id="container" class="container">
+  <div class="dashboard">
+  <div class="row">
+  <div class="col-xs-3 column" name="centro" style="background-color:#00899f;text-shadow: 1px 1px #333; color: white">
+  <span class="glyphicon glyphicon-home iconDashboard"></span>
+  <p class="text-dashboard">Centros</p>
+  </div>
+  <div class="col-xs-3 column" name="" style="background-color:#009c00; text-shadow: 1px 1px #333; color: white;">
+  <span class="glyphicon glyphicon-stats iconDashboard"></span>
+  <p class="text-dashboard">Ventas</p>
+  </div>
+  <div class="col-xs-3 column" name="servicio" style="background-color:#0a57c0; text-shadow: 1px 1px #333; color: white;">
+  <span class="glyphicon glyphicon-list iconDashboard"></span>
+  <p class="text-dashboard">Servicios</p>
+  </div>
+  <div class="col-xs-3 column" name="" style="background-color:#b81c46; text-shadow: 1px 1px #333; color: white">
+  <span class="glyphicon glyphicon-user iconDashboard"></span>
+  <p class="text-dashboard">Operarios</p>
+  </div>
+  <div class="col-xs-3 column" name="users" style="background-color:#db552d; text-shadow: 1px 1px #333; color: white">
+  <span class="glyphicon glyphicon-user iconDashboard"></span>
+  <p class="text-dashboard">Clientes</p>
+  </div>
+  <div class="col-xs-3 column" name="reserva" style="background-color:#633dbd; text-shadow: 1px 1px #333; color: white;">
+  <span class="glyphicon glyphicon-calendar iconDashboard"></span>
+  <p class="text-dashboard">Reservas</p>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  <div class="container serv">
+    <div class="row serv">
+      <h2>Servicios</h2>
+      <div class="col-xs-12 col-sm-9">Lista de servicios:
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <button type="button" class="btn btn-small btn-primary" data-toggle="modal" data-target="#modalNewServicio">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva servicio
+        </button>
+      </div>
+
+    </div>
+    <hr/>
+    <table class="table" id="table-servicio">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="servicioAdd">
+        
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container cent">
+    <div class="row cent">
+      <h2>Centros</h2>
+      <div class="col-xs-12 col-sm-9">Lista de centros:
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <button type="button" class="btn btn-small btn-primary" data-toggle="modal" data-target="#modalNewCentro">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Centro
+        </button>
+      </div>
+
+    </div>
+    <hr/>
+    <table class="table" id="table-centro">
+      <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Coordenadas</th>
+        </tr>
+      </thead>
+      <tbody id="centroAdd">
+        
+      </tbody>
+    </table>
+  </div>
+
+    <div class="container us">
+    <div class="row us">
+      <h2>Clientes</h2>
+      <div class="col-xs-12 col-sm-9">Lista de clientes:
+      </div>
+
+    </div>
+    <hr/>
+    <table class="table" id="table-cliente">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="clienteAdd">
+        
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+
+<!-- Modal servicio -->
+<div class="modal fade" id="modalNewServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nuevo Servicio</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon2" id="tituloNewServicio">
+        </div>
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Precio</span>
+          <input type="text" class="form-control" placeholder="Precio" aria-describedby="sizing-addon2" id="contenidoNewServicio">
+        </div>
+        <br/><br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnSaveServicio">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+<!-- Modal midificar/eliminar servicio-->
+<div class="modal fade" id="modalModiServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modificar Servicio</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon2" id="tituloModiServicio">
+        </div>
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Precio</span>
+          <input type="text" class="form-control" placeholder="Precio" aria-describedby="sizing-addon2" id="contenidoModiServicio">
+        </div>
+        <br/><br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-small btn-danger btn-delete-servicio"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnModiServicio">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+
+
+<!-- Modal centro -->
+<div class="modal fade" id="modalNewCentro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nuevo Centro</h4>
+      </div>
+      <div class="modal-body">
+        
+         
+          <input type="file" class="form-control" placeholder="Logo" aria-describedby="sizing-addon2" id="logoNewCentro">
+        
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon2" id="tituloNewCentro">
+        </div>
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Descripción</span>
+          <input type="text" class="form-control" placeholder="Descripción" aria-describedby="sizing-addon2" id="contenidoNewCentro">
+        </div>
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Coordenadas</span>
+          <input type="text" class="form-control" placeholder="Coordenadas" aria-describedby="sizing-addon2" id="coordNewCentro">
+        </div>
+        <br/><br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnSaveCentro">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+<!-- Modal midificar/eliminar centro-->
+<div class="modal fade" id="modalModiCentro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modificar Centro</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control" placeholder="Nombre" aria-describedby="sizing-addon2" id="tituloModiCentro">
+        </div>
+        <br/><br/>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Descripción</span>
+          <input type="text" class="form-control" placeholder="Descripción" aria-describedby="sizing-addon2" id="contenidoModiCentro">
+        </div>
+        <br/><br/>
+          <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Coordenadas</span>
+          <input type="text" class="form-control" placeholder="Coordenadas" aria-describedby="sizing-addon2" id="coordModiCentro">
+        </div>
+        <br/><br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-small btn-danger btn-delete-centro"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnModiCentro">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal -->
+
+</body>
+
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+
+
+   
+
+$( document ).ready(function() {
+$('.cabe').hide();
+$('.wrapper').hide();
+var nombrediv;
+var idCompleto;
+var listaservicios;
+
+ // AJAX LOGIN
+    $('.login').click(function(){
+        var usu = $('.useradmin').val();
+        var usupass = $('.password').val();
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/rest-auth/login/",
+            dataType: "json",
+            data: { "username": usu, "password": usupass },
+            success: function(data) {
+                key = data.key;
+                $('.cnt').hide();
+                $('.cabe').show();
+                $('.wrapper').show();
+                $('.serv').hide();
+                $('.cent').hide();
+                $('.us').hide();
+
+            }            
+        });
+
+    });
+
+
+$(".column").on( "click", function() {
+      //$('#target').show(); //muestro mediante id
+      $('.row').hide(); //muestro mediante clase
+      
+      nombrediv = $(this).attr('name');
+      //alert(nombrediv);
+
+      switch (nombrediv) { 
+        case 'servicio': 
+          $('.serv').show();
+          reloadservicios();
+          break;
+        case 'centro': 
+          $('.cent').show();
+          reloadcentros();
+          break;
+        case 'users': 
+          $('.us').show();
+          reloadclientes();
+          break;    
+        case 'reserva': 
+          alert('No disponible');
+          break;
+        default:
+          alert('No disponible');
+      }
+
+
+      
+
+     });
+
+    $("#arrowBack").on( "click", function() {
+      //$('#target').show(); //muestro mediante id
+      $('.row').show(); //muestro mediante clase
+      $('.serv').hide();
+      $('.cent').hide();
+      $('.us').hide();
+     });
+
+$( "body" ).on("click",".btn-delete-centro",function(){
+  //var fila = $(this).closest("tr");
+  //idCompleto = fila.attr('id'); // Me devuelve por ejemplo: servicio-3
+  deletecentros();
+  $(this).closest("tr").remove();
+  $('#modalModiCentro').modal('hide');
+
+});
+
+$( "body" ).on("click",".btn-delete-servicio",function(){
+  //var fila = $(this).closest("tr");
+  //idCompleto = fila.attr('id'); // Me devuelve por ejemplo: servicio-3
+  deleteservicios();
+  $(this).closest("tr").remove();
+  $('#modalModiServicio').modal('hide');
+});
+
+$("body").on( "click", "ul", function() {
+  location.reload();
+});
+
+$( "body" ).on("click","tr",function(){
+
+  var fila = $(this).closest("tr");
+  idCompleto = fila.attr('id'); // Me devuelve por ejemplo: servicio-3
+ switch (nombrediv) { 
+        case 'servicio': 
+          var nomser = $(this).find("td:first").html();
+          var preser = $(this).find("td").eq(1).html();
+            $('#tituloModiServicio').val(nomser);
+            $('#contenidoModiServicio').val(preser);
+          break;
+        case 'centro': 
+            var nomcen = $(this).find("td").eq(1).html();
+            var descen = $(this).find("td").eq(2).html();
+            var coorcen = $(this).find("td").eq(3).html();
+                      $('#tituloModiCentro').val(nomcen);
+                      $('#contenidoModiCentro').val(descen);
+                      $('#coordModiCentro').val(coorcen);
+          break;
+
+}
+
+});
+
+
+$('#btnModiCentro').on("click",function(){
+
+    var n =$('#tituloModiCentro').val();
+    var p =$('#contenidoModiCentro').val();
+    var coor =$('#coordModiCentro').val();
+  var centrojson = {nombre:n, descripcion:p, coordenadas:coor};
+
+ $.ajax({
+        type: "PUT",
+        url: "http://localhost:8000/api/"+nombrediv+"/"+idCompleto+"/",
+        data: centrojson,
+        dataType: "json", //set to JSON
+       // contentType : "application/json",
+        crossDomain: false,
+        headers: {
+          
+            "Authorization": "Token " + key
+        },
+        success: function(respuesta)
+        {
+            
+            reloadcentros();
+        },
+        error: function(error) {
+          alert("No se ha podido modificar el centro. Inténtelo de nuevo");
+        }
+
+    });
+
+  $('#modalModiCentro').modal('hide');
+    // Limpio los campos del formulario
+    $('#tituloModiCentro').val('');
+    $('#contenidoModiCentro').val('');
+    $('#coordModiCentro').val('');
+});
+
+
+
+$('#btnModiServicio').on("click",function(){
+
+    var n =$('#tituloModiServicio').val();
+    var p =$('#contenidoModiServicio').val();
+  var servicio = {id:idCompleto, tipo:n, precio:p};
+
+ $.ajax({
+        type: "PUT",
+        url: "http://localhost:8000/api/"+nombrediv+"/"+idCompleto+"/",
+        data: servicio,
+        dataType: "json", //set to JSON
+       // contentType : "application/json",
+        crossDomain: false,
+        headers: {
+          
+            "Authorization": "Token " + key
+        },
+        success: function(respuesta)
+        {
+            
+            reloadservicios();
+        },
+        error: function(error) {
+          alert("No se ha podido modificar el servicio. Inténtelo de nuevo");
+        }
+
+    });
+
+  $('#modalModiServicio').modal('hide');
+    // Limpio los campos del formulario
+    $('#tituloModiServicio').val('');
+    $('#contenidoModiServicio').val('');
+
+});
+
+  //--------------- funciones --------------------------------------------
+
+        function reloadclientes() {
+              $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/api/"+nombrediv+"/",
+            crossDomain: false,
+            headers: {
+                'Authorization': 'Token ' + key
+            },
+            success: function(data) {
+                      var htmlNuevaFila="";
+                      var cont = 1;
+                for(i = 0; i < data.results.length; i++){
+
+                          htmlNuevaFila+= '<tr id="'+data.results[i].id+'"><td>'+data.results[i].username+'</td><td>'+data.results[i].first_name+'</td><td>'+data.results[i].last_name+'</td><td>'+data.results[i].email+'</td></tr>';
+                          cont++;
+//                          alert(data.results.id);
+                      }
+                      $('#clienteAdd').html(htmlNuevaFila);
+
+            }, 
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.headers);
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+      }
+
+        function salir() {
+          location.reload();
+        }
+
+        function reloadcentros() {
+              $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/api/"+nombrediv+"/",
+            crossDomain: false,
+            headers: {
+                'Authorization': 'Token ' + key
+            },
+            success: function(data) {
+                      var htmlNuevaFila="";
+                      var cont = 1;
+                for(i = 0; i < data.results.length; i++){
+
+                          htmlNuevaFila+= '<tr id="'+data.results[i].id+'"data-toggle="modal" data-target="#modalModiCentro"><td><img src="'+data.results[i].img+'" width="100" height="100"></td><td>'+data.results[i].nombre+'</td><td>'+data.results[i].descripcion+'</td><td>'+data.results[i].coordenadas+'</td></tr>';
+                          cont++;
+//                          alert(data.results.id);
+                      }
+                      $('#centroAdd').html(htmlNuevaFila);
+
+            }, 
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.headers);
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+      }
+
+
+
+        function reloadservicios() {
+              $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/api/"+nombrediv+"/",
+            crossDomain: false,
+            headers: {
+                'Authorization': 'Token ' + key
+            },
+            success: function(data) {
+                      var htmlNuevaFila="";
+                      var cont = 1;
+                for(i = 0; i < data.results.length; i++){
+
+                          htmlNuevaFila+= '<tr id="'+data.results[i].id+'"data-toggle="modal" data-target="#modalModiServicio"><td>'+data.results[i].tipo+'</td><td>'+data.results[i].precio+'</td></tr>';
+                          cont++;
+//                          alert(data.results.id);
+                      }
+                      $('#servicioAdd').html(htmlNuevaFila);
+
+            }, 
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.headers);
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+      }
+
+    function deletecentros() {
+         $.ajax({
+                type: "DELETE" ,
+                url: "http://localhost:8000/api/"+nombrediv+"/"+idCompleto+"/",
+                dataType: "json", //set to JSON
+                crossDomain: false,
+                headers: {
+                    'Authorization': 'Token ' + key
+                },
+                success: function(respuesta)
+                {
+                    reloadcentros();
+                },
+                error: function(error) {
+                  reloadcentros();
+                }
+                
+            });
+  }
+
+    function cargarservicioscentro(){
+                      $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/api/servicio/",
+            crossDomain: false,
+            headers: {
+                'Authorization': 'Token ' + key
+            },
+            success: function(data) {
+                      
+                      var cont = 1;
+                for(i = 0; i < data.results.length; i++){
+                          listaservicios="http://localhost:8000/api/servicio/"+data.results[i].id+"/";
+                          cont++;
+//                          
+                      }
+                      
+
+            }, 
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.headers);
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+
+    }
+
+
+    function deleteservicios() {
+         $.ajax({
+                type: "DELETE" ,
+                url: "http://localhost:8000/api/"+nombrediv+"/"+idCompleto+"/",
+                dataType: "json", //set to JSON
+                crossDomain: false,
+                headers: {
+                    'Authorization': 'Token ' + key
+                },
+                success: function(respuesta)
+                {
+                    reloadservicios();
+                },
+                error: function(error) {
+                  reloadservicios();
+                }
+                
+            });
+  }
+
+  // --------------------------- fin funciones ---------------------------
+
+// MODAL
+$('#btnSaveServicio').on("click",function(){
+
+
+  // Añadir nueva fila a la tabla con los datos del usuario
+  var nomb = $('#tituloNewServicio').val();
+  var prec = $('#contenidoNewServicio').val();
+
+  var servicio = {tipo:nomb, precio:prec};
+
+ $.ajax({
+        type: "post",
+        url: "http://localhost:8000/api/"+nombrediv+"/",
+        dataType: "json", //set to JSON
+        data: servicio,
+        crossDomain: false,
+        headers: {
+            'Authorization': 'Token ' + key
+        },
+        success: function(respuesta)
+        {
+            
+            reloadservicios();
+        },
+        error: function(error) {
+          alert("No se ha podido crear el servicio. Inténtelo de nuevo");
+        }
+    });
+
+  var numFilas = $("#servicioAdd tr").length;
+  var id = numFilas+1;
+  var htmlNuevaFila = '<tr id="'+id+'"><td>'+nomb+'</td><td>'+prec+'</td></tr>';
+  $("#servicioAdd").append(htmlNuevaFila);
+  $('#modalNewServicio').modal('hide');
+    // Limpio los campos del formulario
+    $('#tituloNewServicio').val('');
+    $('#contenidoNewServicio').val('');
+
+  });
+
+  // MODAL
+$('#btnSaveCentro').on("click",function(){
+
+
+
+  cargarservicioscentro();
+
+
+
+  // Añadir nueva fila a la tabla con los datos del usuario
+  var dirlog = $('#logoNewCentro').val();
+  var nomb = $('#tituloNewCentro').val();
+  var prec = $('#contenidoNewCentro').val();
+  var cor = $('#coordNewCentro').val();
+
+  var centro = {nombre:nomb, img:dirlog , servicio:"http://localhost:8000/api/servicio/9/", descripcion:prec, coordenadas:cor};
+
+ $.ajax({
+        type: "post",
+        url: "http://localhost:8000/api/"+nombrediv+"/",
+        dataType: "json", //set to JSON
+        data: centro,
+        crossDomain: false,
+        headers: {
+            'Authorization': 'Token ' + key
+        },
+        success: function(respuesta)
+        {
+            
+            reloadcentros();
+        },
+        error: function(error) {
+          alert("No se ha podido crear el centro. Inténtelo de nuevo");
+        }
+    });
+
+  var numFilas = $("#centroAdd tr").length;
+  var id = numFilas+1;
+  var htmlNuevaFila = '<tr id="'+id+'"><td><img src="'+dirlog+'" width="100" height="100"></td><td>'+nomb+'</td><td>'+prec+'</td><td>'+cor+'</td></tr>';
+  $("#centroAdd").append(htmlNuevaFila);
+  $('#modalNewCentro').modal('hide');
+    // Limpio los campos del formulario
+    $('#logoNewCentro').val('');
+    $('#tituloNewCentro').val('');
+    $('#contenidoNewCentro').val('');
+    $('#coordNewCentro').val('');
+
+  });
+
+
+});
+
+
+</script>
+
+</html>
